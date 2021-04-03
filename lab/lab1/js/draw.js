@@ -110,4 +110,15 @@ map.on('draw:created', function (e) {
     var type = e.layerType; // The type of shape
     var layer = e.layer; // The Leaflet layer for the shape
     var id = L.stamp(layer); // The unique Leaflet ID for the layer
+    var theHtml = `<div class="shape" data-leaflet-id=${id}><h1>Current ID: ${id}</h1></div>`
+    
+    if ( ! _.isUndefined (myRectangle) ) { // if myRectangle is defined
+      map.removeLayer(myRectangle)
+    }
+    myRectangle = layer
+    map.addLayer(myRectangle)
+
+    $('#shapes').html(`${theHtml}`)
+      
+    
 });
