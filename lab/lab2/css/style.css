@@ -7,20 +7,22 @@ body {
 .map {
     position: absolute;
     right: 0px;
-    left: 340px;
+    left: 380px;
     height: 100%;
     top: 0;
+    transition: margin-left .5s;
 }
 
-.sidebar {
+.vendor-list {
     position: absolute;
     left: 0px;
-    width: 340px;
+    width: 380px;
     top: 0;
     bottom: 0;
     overflow-y: auto;
     padding: 20px;
     padding-bottom: 60px;
+    transition: margin-left .5s;
 }
 
 .item {
@@ -45,6 +47,7 @@ body {
     width: 340px;
     background-color: #fff;
     padding: 20px;
+    transition: margin-left .5s;
 }
 
 .sort-option {
@@ -55,18 +58,79 @@ body {
     border-bottom: 1px solid #ccc;
 }
 
-.sidebar nav.navbar-default {
+.vendor-list nav.navbar-default {
     border: 0;
     border-radius: 0;
     background-color: #fff;
     border-bottom: 1px solid #eee;
     margin: -14px -20px 20px;
     padding: 10px 20px 15px;
+    position: relative;
 }
 
 .navbar-brand {
     font-size: 14px;
     font-weight: bold;
+}
+
+
+.sidebar {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position:absolute; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+/* The sidebar links */
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* The button used to open the sidebar */
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
 }
 
 /* =============

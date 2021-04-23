@@ -104,21 +104,47 @@ var drawControl = new L.Control.Draw({
 });
 
 map.addControl(drawControl);
+myRectangles = []
 
 // Event which is run every time Leaflet draw creates a new layer
 map.on('draw:created', function (e) {
-    var type = e.layerType; // The type of shape
-    var layer = e.layer; // The Leaflet layer for the shape
-    var id = L.stamp(layer); // The unique Leaflet ID for the layer
-    var theHtml = `<div class="shape" data-leaflet-id=${id}><h1>Current ID: ${id}</h1></div>`
-    
-    if ( ! _.isUndefined (myRectangle) ) { // if myRectangle is defined
-      map.removeLayer(myRectangle)
-    }
+  var type = e.layerType; // The type of shape
+  var layer = e.layer; // The Leaflet layer for the shape
+  var id = L.stamp(layer); // The unique Leaflet ID for the layer
+  var theHtml = `<div class="shape" data-leaflet-id=${id}><h1>Current ID: ${id}</h1></div>`
+  myRectangle = layer
+  map.addLayer(myRectangle)
+
+  $('#shapes').append(`${theHtml}`)
+
+/*   $('.shape').on('mouseover', function(e) { 
+    leafletId = $(e.currentTarget).data().leafletId
+    map._layers[leafletId]. setStyle({color: "red"}) 
+  })
+
+  $('.shape').on('mouseleave', function(e) { 
+    leafletId = $(e.currentTarget).data().leafletId
+    map._layers[leafletId]. setStyle({color: "blue"}) 
+  }) */
+
+
+  $('.shape').on('mouseover', function(e) { 
+    map._layers[$(e.currentTarget).data().leafletId]. setStyle({color: "red"}) 
+  })
+
+  $('.shape').on('mouseleave', function(e) { 
+    map._layers[$(e.currentTarget).data().leafletId]. setStyle({color: "blue"}) 
+  })
+
+  $('map._layers').on('mouseover', function(e) { 
+    $('data-leaflet-id=${id}'). setStyle({color: "red"}) 
+  })
+
+  
+  
+
     myRectangle = layer
     map.addLayer(myRectangle)
-
-    $('#shapes').html(`${theHtml}`)
+    myRectangles.push(myRectangle)
       
-    
 });
